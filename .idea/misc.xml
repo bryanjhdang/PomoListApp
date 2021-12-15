@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/activity_help.xml" value="0.1" />
         <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/activity_task_list.xml" value="0.1" />
+        <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/activity_test.xml" value="0.1" />
+        <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/app_bar_task_list.xml" value="0.1" />
+        <entry key="..\:/Users/Bryan/Desktop/Personal Projects/PomoList/app/src/main/res/layout/content_task_list.xml" value="0.1" />
       </map>
     </option>
   </component>
