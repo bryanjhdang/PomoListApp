@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PomoList">
         <activity
+            android:name=".view.TaskListActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
