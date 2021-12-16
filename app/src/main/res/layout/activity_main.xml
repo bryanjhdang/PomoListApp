@@ -6,13 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/timerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="timer"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/todolistBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="to do list"
+        app:layout_constraintEnd_toEndOf="@+id/timerBtn"
+        app:layout_constraintStart_toStartOf="@+id/timerBtn"
+        app:layout_constraintTop_toBottomOf="@+id/timerBtn" />
+
+    <Button
+        android:id="@+id/settingsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="settings"
+        app:layout_constraintEnd_toEndOf="@+id/todolistBtn"
+        app:layout_constraintStart_toStartOf="@+id/todolistBtn"
+        app:layout_constraintTop_toBottomOf="@+id/todolistBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
