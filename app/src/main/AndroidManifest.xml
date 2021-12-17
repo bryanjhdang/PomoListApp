@@ -17,7 +17,7 @@
             android:name=".ToDoListActivity"
             android:exported="true" />
         <activity
-            android:name=".Test"
+            android:name=".SettingsActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
