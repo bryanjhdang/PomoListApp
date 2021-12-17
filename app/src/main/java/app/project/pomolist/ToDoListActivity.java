@@ -2,6 +2,7 @@ package app.project.pomolist;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -16,13 +17,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Objects;
+import android.view.MenuItem;
 
-public class ToDoListActivity extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+public class ToDoListActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+
+        BottomNavigationView menuBar = findViewById(R.id.navigation_bar_tasks);
+        menuBar.setOnNavigationItemSelectedListener(this);
 
         setActionBar();
     }
@@ -62,4 +69,24 @@ public class ToDoListActivity extends AppCompatActivity {
 
 
 
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_timer:
+                Intent timerIntent = TimerActivity.launchIntent(ToDoListActivity.this);
+                startActivity(timerIntent);
+                return true;
+            case R.id.menu_tasks:
+                return true;
+            case R.id.menu_settings:
+                Intent settingIntent = SettingsActivity.launchIntent(ToDoListActivity.this);
+                startActivity(settingIntent);
+                return true;
+        }
+
+        return false;
+    }
 }
