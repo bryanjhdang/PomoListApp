@@ -8,6 +8,9 @@ import android.os.Bundle;
 
 import java.util.Objects;
 
+/**
+ * Activity allows the user to edit the fields of a task, save options, and remove a task.
+ */
 public class ConfigureTaskActivity extends AppCompatActivity {
 
     @Override
