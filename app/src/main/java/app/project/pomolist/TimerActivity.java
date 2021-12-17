@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+/**
+ * Activity shows the graphical timer.
+ */
 public class TimerActivity extends AppCompatActivity {
 
     @Override
