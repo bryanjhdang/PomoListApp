@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +36,8 @@ public class ToDoListActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_to_do_list) {
-            promptNewTask();
+            Intent intent = ConfigureTaskActivity.launchIntent(ToDoListActivity.this);
+            startActivity(intent);
         }
         return true;
     }
@@ -58,24 +60,6 @@ public class ToDoListActivity extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void promptNewTask() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(ToDoListActivity.this);
 
-        alert.setMessage(R.string.add_task_prompt);
-
-        final EditText input = new EditText(this);
-        alert.setView(input);
-
-        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // add to singleton
-            }
-        });
-
-        alert.setNegativeButton("Cancel", null);
-
-        alert.show();
-    }
 
 }

@@ -4,4 +4,6 @@
     <string name="to_do_list_title">To-Do List</string>
     <string name="add_task_button">Add Task Button</string>
     <string name="add_task_prompt">What is the name of the task?</string>
+    <string name="edit_task_title">Edit Task</string>
+    <string name="add_task_title">Add Task</string>
 </resources>
