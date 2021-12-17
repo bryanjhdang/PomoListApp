@@ -12,13 +12,16 @@
         android:theme="@style/Theme.PomoList">
         <activity
             android:name=".TimerActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ToDoListActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".TimerActivity"/>
         <activity
             android:name=".SettingsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".TimerActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

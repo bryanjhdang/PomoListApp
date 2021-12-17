@@ -20,7 +20,8 @@ public class TimerActivity extends AppCompatActivity implements BottomNavigation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        BottomNavigationView menuBar = findViewById(R.id.navigation_bar);
+        getSupportActionBar().setTitle("Timer");
+        BottomNavigationView menuBar = findViewById(R.id.navigation_bar_timer);
         menuBar.setOnNavigationItemSelectedListener(this);
     }
 
@@ -31,14 +32,17 @@ public class TimerActivity extends AppCompatActivity implements BottomNavigation
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         switch (id) {
             case R.id.menu_timer:
                 return true;
             case R.id.menu_tasks:
-                ToDoListActivity.launchIntent(TimerActivity.this);
+                Intent taskIntent = ToDoListActivity.launchIntent(TimerActivity.this);
+                startActivity(taskIntent);
+                return true;
             case R.id.menu_settings:
-                SettingsActivity.launchIntent(TimerActivity.this);
+                Intent settingIntent = SettingsActivity.launchIntent(TimerActivity.this);
+                startActivity(settingIntent);
+                return true;
         }
 
         return false;

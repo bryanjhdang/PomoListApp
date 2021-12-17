@@ -8,7 +8,7 @@
     tools:context=".TimerActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navigation_bar"
+        android:id="@+id/navigation_bar_timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/menu_bar_color"
