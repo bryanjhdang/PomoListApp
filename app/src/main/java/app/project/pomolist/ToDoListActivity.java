@@ -49,28 +49,6 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         return true;
     }
 
-    public static Intent launchIntent(Context context) {
-        return new Intent(context, ToDoListActivity.class);
-    }
-
-    private void makeNavigationBarWhite() {
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.white));
-    }
-
-    private void makeStatusBarWhite() {
-        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
-
-    private void setActionBar() {
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.to_do_list_title);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-
-
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -88,5 +66,13 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         }
 
         return false;
+    }
+
+    public static Intent launchIntent(Context context) {
+        return new Intent(context, ToDoListActivity.class);
+    }
+
+    private void setActionBar() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.to_do_list_title);
     }
 }
