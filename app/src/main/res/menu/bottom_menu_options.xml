@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_timer"
+        android:icon="@drawable/menu_bar_timer"
+        android:title="Timer" />
+
+    <item
+        android:id="@+id/menu_tasks"
+        android:icon="@drawable/menu_bar_tasks"
+        android:title="Tasks" />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/men_bar_settings"
+        android:title="Settings" />
+</menu>
