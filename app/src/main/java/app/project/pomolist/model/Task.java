@@ -1,36 +1,26 @@
 package app.project.pomolist.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Class that represents a single task to complete.
  */
 public class Task {
-    String taskDescription;
-    String course;
-    LocalDate dueDate;
-    int difficulty;
+    String taskName;
+    LocalDateTime dueDate;
 
-    public Task(String taskDescription, String course, int difficulty, LocalDate dueDate) {
-        this.taskDescription = taskDescription;
-        this.course = course;
-        this.difficulty = difficulty;
+    public Task(String taskName, LocalDateTime dueDate) {
+        this.taskName = taskName;
         this.dueDate = dueDate;
     }
 
     public String getTaskDescription() {
-        return taskDescription;
+        return taskName;
     }
 
-    public String getCourse() {
-        return course;
-    }
-
-    public LocalDate getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public int getDifficulty() {
-        return difficulty;
-    }
 }
