@@ -32,10 +32,12 @@ public class SettingsActivity extends AppCompatActivity implements BottomNavigat
         switch (id) {
             case R.id.menu_timer:
                 Intent timerIntent = TimerActivity.launchIntent(SettingsActivity.this);
+                finish();
                 startActivity(timerIntent);
                 return true;
             case R.id.menu_tasks:
                 Intent taskIntent = ToDoListActivity.launchIntent(SettingsActivity.this);
+                finish();
                 startActivity(taskIntent);
                 return true;
             case R.id.menu_settings:
