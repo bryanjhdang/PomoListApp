@@ -20,11 +20,25 @@ public class TaskManager {
 
     private TaskManager() {}
 
-    private void addTask() {
+    public void addTask(Task task) {
+        taskList.add(task);
+    }
+
+    public void completeTask() {
 
     }
 
-    private void completeTask() {
+    public static boolean isValidName(String taskName) {
+        if (taskName.length() == 0) {
+            return false;
+        }
 
+        boolean notAllSpaces = false;
+        for (int i = 0; i < taskName.length(); i++) {
+            if (taskName.charAt(i) != ' ') {
+                notAllSpaces = true;
+            }
+        }
+        return notAllSpaces;
     }
 }
