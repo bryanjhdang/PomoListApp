@@ -8,7 +8,7 @@ import app.project.pomolist.model.Task;
  * Singleton design pattern that contains a collection of tasks.
  */
 public class TaskManager {
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> taskList = new ArrayList<>();
 
     private static TaskManager instance;
     public static TaskManager getInstance() {
