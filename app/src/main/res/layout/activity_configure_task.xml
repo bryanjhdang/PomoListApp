@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="date temp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/taskName"
         app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
@@ -41,6 +42,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/dateText"
         app:layout_constraintStart_toEndOf="@+id/dateText"
         app:layout_constraintTop_toTopOf="@+id/dateText" />
+
+    <CheckBox
+        android:id="@+id/noDueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="No Due Date"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/dateButton"
+        app:layout_constraintTop_toBottomOf="@+id/dateButton" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/taskButtonLayout"

@@ -11,7 +11,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,21 +28,20 @@ import app.project.pomolist.model.Task;
 /**
  * Activity allows the user to edit the fields of a task, save options, and remove a task.
  */
-public class ConfigureTaskActivity extends AppCompatActivity {
+public class ConfigureTaskActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     TaskManager taskManager = TaskManager.getInstance();
+    private DatePicker datePicker;
 
-    private DatePickerDialog.OnDateSetListener dateDialog;
-    private TimePickerDialog timeDialog;
+    private final String NO_DATE = "No date";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configure_task);
-
         hideActionBar();
 
-
         setDatePicker();
+        setNoDateOption();
         setConfirmationButtons();
     }
 
@@ -50,26 +53,51 @@ public class ConfigureTaskActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
+    // ***********************************************************
+    // Let the user pick a date
+    // ***********************************************************
+
     private void setDatePicker() {
         Button dateButton = findViewById(R.id.dateButton);
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.YEAR);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
                         ConfigureTaskActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        dateDialog,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                        ConfigureTaskActivity.this,
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        Calendar.getInstance().get(Calendar.MONTH),
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                );
+                datePickerDialog.show();
             }
         });
     }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        String date = "month/day/year: " + month + "/" + dayOfMonth + "/" + year;
+
+        TextView dateText = findViewById(R.id.dateText);
+        dateText.setText(date);
+    }
+
+    private void setNoDateOption() {
+        CheckBox noDueDateCheckBox = findViewById(R.id.noDueDate);
+        noDueDateCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    TextView dateText = findViewById(R.id.dateText);
+                    dateText.setText(NO_DATE);
+                }
+            }
+        });
+    }
+
+    // ***********************************************************
+    // Save and cancel button implementation
+    // ***********************************************************
 
     private void setConfirmationButtons() {
         setCancelButton();
@@ -101,17 +129,17 @@ public class ConfigureTaskActivity extends AppCompatActivity {
         });
     }
 
-    private boolean allInfoIsValid() {
-        String taskName = getTaskNameFromInput();
-        return TaskManager.isValidName(taskName);
-    }
-
     private void addTask() {
         String taskName = getTaskNameFromInput();
         // TODO: Get date from datePicker and pass into list
 
         Task newTask = new Task(taskName, null);
         taskManager.addTask(newTask);
+    }
+
+    private boolean allInfoIsValid() {
+        String taskName = getTaskNameFromInput();
+        return TaskManager.isValidName(taskName);
     }
 
     private void showToastWarning() {
@@ -124,6 +152,4 @@ public class ConfigureTaskActivity extends AppCompatActivity {
         EditText taskName = findViewById(R.id.taskName);
         return taskName.getText().toString();
     }
-
-
 }
