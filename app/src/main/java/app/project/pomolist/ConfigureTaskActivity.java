@@ -1,5 +1,7 @@
 package app.project.pomolist;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -9,6 +11,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +25,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import app.project.pomolist.control.TaskManager;
 import app.project.pomolist.model.Task;
@@ -32,30 +37,39 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     TaskManager taskManager = TaskManager.getInstance();
     private DatePicker datePicker;
 
+    private static final String STATE_MSG = "Passing game state";
     private final String NO_DATE = "No date";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configure_task);
-        hideActionBar();
+        setActionBar();
 
-        setDatePicker();
-        setNoDateOption();
+        dueDatePicker();
         setConfirmationButtons();
     }
 
-    public static Intent launchIntent(Context context) {
-        return new Intent(context, ConfigureTaskActivity.class);
+    public static Intent launchIntent(Context context, String state) {
+        Intent intent = new Intent(context, ConfigureTaskActivity.class);
+        intent.putExtra(STATE_MSG, state);
+        return intent;
     }
 
-    private void hideActionBar() {
-        getSupportActionBar().hide();
+    private void setActionBar() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.new_task_title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     // ***********************************************************
-    // Let the user pick a date
+    // Let the user pick a due date
     // ***********************************************************
+
+    private void dueDatePicker() {
+        setDatePicker();
+        setTimePicker();
+        setNoDueDateOption();
+    }
 
     private void setDatePicker() {
         Button dateButton = findViewById(R.id.dateButton);
@@ -82,7 +96,11 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
         dateText.setText(date);
     }
 
-    private void setNoDateOption() {
+    private void setTimePicker() {
+
+    }
+
+    private void setNoDueDateOption() {
         CheckBox noDueDateCheckBox = findViewById(R.id.noDueDate);
         noDueDateCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -151,5 +169,34 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     private String getTaskNameFromInput() {
         EditText taskName = findViewById(R.id.taskName);
         return taskName.getText().toString();
+    }
+
+    // ***********************************************************
+    // Delete task
+    // ***********************************************************
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.configure_task_delete, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_delete_task) {
+            promptDeletion();
+        }
+        return true;
+    }
+
+    private void promptDeletion() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(ConfigureTaskActivity.this);
+        alert.setMessage(R.string.task_deletion_warning)
+                .setPositiveButton("Yes", ((dialogInterface, i) -> {
+                    // TODO: Delete task
+                    finish();
+                }))
+                .setNegativeButton("No", null);
+        alert.show();
     }
 }

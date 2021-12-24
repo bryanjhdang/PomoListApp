@@ -10,6 +10,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * Activity that allows the user to choose between options:
+ * - Light vs Dark vs System Theme
+ * - Pomodoro Timer Times
+ */
 public class SettingsActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override

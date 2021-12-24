@@ -20,37 +20,34 @@ import java.util.Objects;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * Activity shows a list of tasks.
  * User is able to add and edit tasks.
  */
 public class ToDoListActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private final String ADD_TASK = "Add";
+    private final String EDIT_TASK = "Edit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        setActionBar();
 
         BottomNavigationView menuBar = findViewById(R.id.navigation_bar_tasks);
         menuBar.setOnNavigationItemSelectedListener(this);
 
-        setActionBar();
+        addTaskButton();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_to_do_list, menu);
-        return true;
+    public static Intent launchIntent(Context context) {
+        return new Intent(context, ToDoListActivity.class);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_to_do_list) {
-            Intent intent = ConfigureTaskActivity.launchIntent(ToDoListActivity.this);
-            startActivity(intent);
-        }
-        return true;
+    private void setActionBar() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.to_do_list_title);
     }
 
     @Override
@@ -72,11 +69,16 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         return false;
     }
 
-    public static Intent launchIntent(Context context) {
-        return new Intent(context, ToDoListActivity.class);
+    private final void addTaskButton() {
+        FloatingActionButton addTaskButton = findViewById(R.id.addTaskButton);
+        addTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = ConfigureTaskActivity.launchIntent(ToDoListActivity.this, ADD_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void setActionBar() {
-        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.to_do_list_title);
-    }
+
 }
