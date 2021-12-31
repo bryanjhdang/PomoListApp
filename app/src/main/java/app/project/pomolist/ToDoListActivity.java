@@ -49,6 +49,8 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
 
         setListView();
         addTaskButton();
+
+        Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
     }
 
     public static Intent launchIntent(Context context) {

@@ -28,6 +28,10 @@ public class TaskManager {
 
     }
 
+    public int getTaskListSize() {
+        return taskList.size();
+    }
+
     public ArrayList<String> getTaskListAsStringArray() {
         ArrayList<String> tempArray = new ArrayList<>();
         for (int i = 0; i < taskList.size(); i++) {
