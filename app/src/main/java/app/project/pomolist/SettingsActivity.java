@@ -10,12 +10,17 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private ChipNavigationBar menuBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
         getSupportActionBar().setTitle("Settings");
+        menuBar = findViewById(R.id.navigation_bar_settings);
+        if (savedInstanceState == null) {
+            menuBar.setItemSelected(R.id.menu_settings, true);
+        }
         setNavigationBar();
     }
 
@@ -24,22 +29,18 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setNavigationBar() {
-        ChipNavigationBar menuBar = findViewById(R.id.navigation_bar_settings);
-        menuBar.setItemSelected(R.id.menu_settings, true);
         menuBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
                 switch (i) {
                     case R.id.menu_timer:
                         Intent timerIntent = TimerActivity.launchIntent(SettingsActivity.this);
-                        //timerIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        menuBar.setItemSelected(R.id.menu_timer, true);
+                        timerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(timerIntent);
                         break;
                     case R.id.menu_tasks:
                         Intent taskIntent = ToDoListActivity.launchIntent(SettingsActivity.this);
-                        //taskIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        menuBar.setItemSelected(R.id.menu_tasks, true);
+                        taskIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(taskIntent);
                         break;
                     case R.id.menu_settings:
