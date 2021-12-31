@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -14,6 +17,10 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 public class TimerActivity extends AppCompatActivity {
 
     private ChipNavigationBar menuBar;
+    private final long TIME_MILLI_SECS = 60000;
+    private ProgressBar progressBar;
+    private TextView timerText;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,13 @@ public class TimerActivity extends AppCompatActivity {
             menuBar.setItemSelected(R.id.menu_timer, true);
         }
         setNavigationBar();
+
+        initViews();
+    }
+
+    private void initViews() {
+        progressBar = findViewById(R.id.progressBarTimer);
+        timerText = findViewById(R.id.textViewTime);
     }
 
     public static Intent launchIntent(Context context) {
