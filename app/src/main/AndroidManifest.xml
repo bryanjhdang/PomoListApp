@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="app.project.pomolist">
+    package="app.project.pomolist" >
 
     <application
         android:allowBackup="true"
@@ -9,22 +9,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PomoList">
+        android:theme="@style/Theme.PomoList" >
         <activity
             android:name=".TimerActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ToDoListActivity"
             android:exported="true"
-            android:parentActivityName=".TimerActivity"/>
+            android:parentActivityName=".TimerActivity" />
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
             android:parentActivityName=".TimerActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
