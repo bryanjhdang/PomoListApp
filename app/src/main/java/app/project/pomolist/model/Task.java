@@ -1,5 +1,7 @@
 package app.project.pomolist.model;
 
+import androidx.annotation.NonNull;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -23,4 +25,9 @@ public class Task {
         return dueDate;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return taskName;
+    }
 }

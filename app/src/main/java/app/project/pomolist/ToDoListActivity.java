@@ -13,14 +13,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Objects;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import app.project.pomolist.control.TaskManager;
 
 /**
  * Activity shows a list of tasks.
@@ -29,6 +35,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class ToDoListActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private final String ADD_TASK = "Add";
     private final String EDIT_TASK = "Edit";
+    private final String EDIT_ID = "editIndex";
+    private TaskManager taskManager = TaskManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         BottomNavigationView menuBar = findViewById(R.id.navigation_bar_tasks);
         menuBar.setOnNavigationItemSelectedListener(this);
 
+        setListView();
         addTaskButton();
     }
 
@@ -71,7 +80,32 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         return false;
     }
 
-    private final void addTaskButton() {
+    private void setListView() {
+        populateListView();
+        registerClickListener();
+    }
+
+    private void populateListView() {
+        ArrayList<String> taskListStr = taskManager.getTaskListAsStringArray();
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.task_item, taskListStr);
+        ListView taskList = findViewById(R.id.taskList);
+        taskList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void registerClickListener() {
+        ListView taskList = findViewById(R.id.taskList);
+        taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = ConfigureTaskActivity.launchIntent(ToDoListActivity.this, EDIT_TASK);
+                intent.putExtra(EDIT_ID, position);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void addTaskButton() {
         FloatingActionButton addTaskButton = findViewById(R.id.addTaskButton);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override

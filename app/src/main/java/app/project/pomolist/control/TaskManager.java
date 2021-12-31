@@ -28,6 +28,14 @@ public class TaskManager {
 
     }
 
+    public ArrayList<String> getTaskListAsStringArray() {
+        ArrayList<String> tempArray = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            tempArray.add(taskList.get(i).toString());
+        }
+        return tempArray;
+    }
+
     public static boolean isValidName(String taskName) {
         if (taskName.length() == 0) {
             return false;
