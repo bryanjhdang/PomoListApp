@@ -51,6 +51,12 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         addTaskButton();
     }
 
+    @Override
+    protected void onResume() {
+        setListView();
+        super.onResume();
+    }
+
     public static Intent launchIntent(Context context) {
         return new Intent(context, ToDoListActivity.class);
     }

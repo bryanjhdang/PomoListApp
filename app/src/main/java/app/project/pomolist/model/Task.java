@@ -17,7 +17,7 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public String getTaskDescription() {
+    public String getTaskName() {
         return taskName;
     }
 
@@ -25,9 +25,17 @@ public class Task {
         return dueDate;
     }
 
+    private String getTaskDescription() {
+        if (dueDate == null) {
+            return taskName;
+        } else {
+            return taskName + "\n" + dueDate;
+        }
+    }
+
     @NonNull
     @Override
     public String toString() {
-        return taskName;
+        return getTaskDescription();
     }
 }

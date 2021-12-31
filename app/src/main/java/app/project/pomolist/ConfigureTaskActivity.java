@@ -62,7 +62,12 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
 
     private void setActionBar() {
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.new_task_title);
+        editActionBarTitle();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void editActionBarTitle() {
+        // TODO: Get whether it's add or edit and change the title accordingly
     }
 
     // ***********************************************************
