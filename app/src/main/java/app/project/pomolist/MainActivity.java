@@ -55,16 +55,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchTimerActivity() {
         Intent intent = TimerActivity.launchIntent(MainActivity.this);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     private void launchToDoListActivity() {
         Intent intent = ToDoListActivity.launchIntent(MainActivity.this);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     private void launchSettingsActivity() {
         Intent intent = SettingsActivity.launchIntent(MainActivity.this);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 }

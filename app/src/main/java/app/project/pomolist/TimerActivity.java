@@ -37,10 +37,12 @@ public class TimerActivity extends AppCompatActivity implements BottomNavigation
                 return true;
             case R.id.menu_tasks:
                 Intent taskIntent = ToDoListActivity.launchIntent(TimerActivity.this);
+                taskIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(taskIntent);
                 return true;
             case R.id.menu_settings:
                 Intent settingIntent = SettingsActivity.launchIntent(TimerActivity.this);
+                settingIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(settingIntent);
                 return true;
         }

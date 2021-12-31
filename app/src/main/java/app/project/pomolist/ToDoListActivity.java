@@ -56,12 +56,14 @@ public class ToDoListActivity extends AppCompatActivity implements BottomNavigat
         switch (id) {
             case R.id.menu_timer:
                 Intent timerIntent = TimerActivity.launchIntent(ToDoListActivity.this);
+                timerIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(timerIntent);
                 return true;
             case R.id.menu_tasks:
                 return true;
             case R.id.menu_settings:
                 Intent settingIntent = SettingsActivity.launchIntent(ToDoListActivity.this);
+                settingIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(settingIntent);
                 return true;
         }
