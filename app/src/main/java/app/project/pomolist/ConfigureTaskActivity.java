@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,10 +20,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.ncorti.slidetoact.SlideToActView;
 
 import java.util.Calendar;
 import java.util.Objects;
@@ -47,7 +51,7 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
         setActionBar();
 
         dueDatePicker();
-        setConfirmationButtons();
+        setSaveConfirmationSlider();
     }
 
     public static Intent launchIntent(Context context, String state) {
@@ -97,7 +101,13 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     }
 
     private void setTimePicker() {
-
+//        Button timeButton = findViewById(R.id.timeButton);
+//        timeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     private void setNoDueDateOption() {
@@ -114,34 +124,20 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     }
 
     // ***********************************************************
-    // Save and cancel button implementation
+    // Save slider implementation
     // ***********************************************************
 
-    private void setConfirmationButtons() {
-        setCancelButton();
-        setSaveButton();
-    }
-
-    private void setCancelButton() {
-        Button cancelButton = findViewById(R.id.cancelTaskButton);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+    private void setSaveConfirmationSlider() {
+        SlideToActView sta = findViewById(R.id.confirmationSlider);
+        sta.setOnSlideCompleteListener(new SlideToActView.OnSlideCompleteListener() {
             @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
-    private void setSaveButton() {
-        Button saveButton = findViewById(R.id.saveTaskButton);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            public void onSlideComplete(@NonNull SlideToActView slideToActView) {
                 if (allInfoIsValid()) {
                     addTask();
                     finish();
                 } else {
                     showToastWarning();
+                    sta.resetSlider();
                 }
             }
         });
@@ -199,4 +195,8 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
                 .setNegativeButton("No", null);
         alert.show();
     }
+
+    // set confirmation slider
+
+
 }

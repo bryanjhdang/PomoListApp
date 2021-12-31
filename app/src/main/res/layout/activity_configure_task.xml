@@ -7,6 +7,18 @@
     android:background="@color/white"
     tools:context=".ConfigureTaskActivity">
 
+    <com.ncorti.slidetoact.SlideToActView
+        android:id="@+id/confirmationSlider"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:text="Slide to confirm"
+        tools:ignore="MissingConstraints" />
+
     <EditText
         android:id="@+id/taskName"
         android:layout_width="wrap_content"
@@ -16,11 +28,9 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/taskButtonLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -52,51 +62,5 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/dateButton"
         app:layout_constraintTop_toBottomOf="@+id/dateButton" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/taskButtonLayout"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/saveTaskButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:backgroundTint="@android:color/transparent"
-            android:text="Save"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/taskButtonGuideline"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/cancelTaskButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:backgroundTint="@android:color/transparent"
-            android:text="Cancel"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/taskButtonGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/taskButtonGuideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.50121653" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
