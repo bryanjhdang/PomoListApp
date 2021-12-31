@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_timer"
         android:icon="@drawable/menu_bar_timer"
-        android:title="Timer" />
+        android:title="Timer"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#fff"/>
 
     <item
         android:id="@+id/menu_tasks"
         android:icon="@drawable/menu_bar_tasks"
-        android:title="Tasks" />
+        android:title="Tasks"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#fff"/>
 
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/men_bar_settings"
-        android:title="Settings" />
+        android:title="Settings"
+        app:cnb_backgroundColor="#ff785b"
+        app:cnb_iconColor="#fff"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="#fff"/>
 </menu>
