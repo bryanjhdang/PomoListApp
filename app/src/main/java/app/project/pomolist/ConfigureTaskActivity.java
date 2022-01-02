@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.transition.Slide;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,8 +30,14 @@ import android.widget.Toast;
 
 import com.ncorti.slidetoact.SlideToActView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.SimpleTimeZone;
 
 import app.project.pomolist.control.TaskManager;
 import app.project.pomolist.model.Task;
@@ -41,8 +49,13 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     TaskManager taskManager = TaskManager.getInstance();
     private DatePicker datePicker;
 
+    int hour, minute;
+
     private static final String STATE_MSG = "Passing game state";
     private final String NO_DATE = "No date";
+
+    private final String EDITING_ITEM = "";
+    private final String ADDING_ITEM = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,13 +119,32 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
     }
 
     private void setTimePicker() {
-//        Button timeButton = findViewById(R.id.timeButton);
-//        timeButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        Button timeButton = findViewById(R.id.timeButton);
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        hour = selectedHour;
+                        minute = selectedMinute;
+
+                        LocalTime tempTime = LocalTime.of(hour, minute);
+                        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+                        String timeAsStr = tempTime.format(dateTimeFormatter);
+
+                        TextView timeText = findViewById(R.id.timeText);
+                        timeText.setText(timeAsStr);
+                    }
+                };
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog
+                    (ConfigureTaskActivity.this, android.R.style.Theme_Holo_Light_Dialog, onTimeSetListener, hour, minute, false);
+
+                timePickerDialog.setTitle("Select Time");
+                timePickerDialog.show();
+            }
+        });
     }
 
     private void setNoDueDateOption() {
@@ -200,6 +232,7 @@ public class ConfigureTaskActivity extends AppCompatActivity implements DatePick
                 .setNegativeButton("No", null);
         alert.show();
     }
+
 
     // set confirmation slider
 
