@@ -19,6 +19,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 /**
  * Activity shows the graphical timer and list view of tasks.
+ *
  */
 public class TimerActivity extends AppCompatActivity {
 
